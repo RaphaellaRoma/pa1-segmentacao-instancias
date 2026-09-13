@@ -1,0 +1,13 @@
+torch
+numpy
+pandas
+matplotlib
+Pillow
+scipy
+scikit-image
+scikit-learn
+openpyxl
+tqdm
+nbformat
+nbclient
+ipykernel

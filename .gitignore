@@ -1,1 +1,5 @@
 *.png
+__pycache__/
+.pdf-tools/
+task1_treinado.ipynb
+AI_LOG.md
