@@ -1,0 +1,3 @@
+config,seed,gamma,balanced,global_context,best_epoch,duration_min,val_map,val_dice,val_boundary_dice
+Focal balanceada gamma=2 + image pooling,42,2,True,True,6,1.699661470000016,0.45396054672733577,0.8140440975129605,0.5008436445891857
+Focal balanceada gamma=2 + image pooling,123,2,True,True,6,1.6880793099999816,0.4016211442795594,0.8369986826181411,0.4696651680767536
