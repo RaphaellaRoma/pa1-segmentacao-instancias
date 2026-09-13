@@ -66,6 +66,19 @@ para `True` somente se quiser reproduzir esses experimentos. Os números
 acima pertencem ao checkpoint atual; resultados históricos de outros treinos
 não devem ser misturados na mesma comparação.
 
+Há também uma célula opcional **“Experimento complementar — duração do treino”**
+logo após a Parte 2. Ela testa até 20 épocas, partindo de uma nova inicialização
+com a mesma configuração da Parte 2, e guarda o melhor modelo até a época 10
+e até a 20 **na mesma execução**. Compara os dois apenas na validação.
+A flag `RUN_20_EPOCH_EXPERIMENT` está em `True` para a execução na máquina com
+GPU. Prepare antes os dados e as funções de treino da Parte 2 no mesmo kernel
+e execute **somente a célula desse experimento**; não use “Executar tudo”, que
+repetiria os treinos anteriores. Os arquivos separados são
+`checkpoints/small_unet_boundary_10ep_control.pt`,
+`checkpoints/small_unet_boundary_20ep.pt`, `results/part2_20ep_history.csv`
+e `results/part2_20ep_validation.csv`. A célula não roda em `train.py` e não
+substitui o checkpoint final; o teste fica reservado até avaliarmos a validação.
+
 ## Inferência em qualquer imagem
 
 Abra `inferencia.ipynb`, ajuste somente `IMAGE_PATH` e execute as células.
