@@ -1,0 +1,3 @@
+método,map,true_count,predicted_count,count_error
+IDs locais sem fusão,0.2876096356655031,121,124,3
+Fusão por IoU na sobreposição,0.3502156023049451,121,93,28
