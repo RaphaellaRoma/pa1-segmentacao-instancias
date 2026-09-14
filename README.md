@@ -66,18 +66,22 @@ para `True` somente se quiser reproduzir esses experimentos. Os números
 acima pertencem ao checkpoint atual; resultados históricos de outros treinos
 não devem ser misturados na mesma comparação.
 
-Há também uma célula opcional **“Experimento complementar — duração do treino”**
-logo após a Parte 2. Ela testa até 20 épocas, partindo de uma nova inicialização
-com a mesma configuração da Parte 2, e guarda o melhor modelo até a época 10
-e até a 20 **na mesma execução**. Compara os dois apenas na validação.
-A flag `RUN_20_EPOCH_EXPERIMENT` está em `True` para a execução na máquina com
-GPU. Prepare antes os dados e as funções de treino da Parte 2 no mesmo kernel
-e execute **somente a célula desse experimento**; não use “Executar tudo”, que
-repetiria os treinos anteriores. Os arquivos separados são
+O **experimento complementar de 10 versus 20 épocas** foi executado em uma
+única sequência de treino, com a mesma seed e os mesmos dados. O melhor modelo
+das dez primeiras épocas obteve mAP `0,4522` e erro de contagem `11,37` na
+validação; o melhor entre as vinte épocas (época 15) obteve `0,4825` e `10,99`.
+Essa melhora é **somente de validação**, não uma nova medida no teste. Os dois
+checkpoints e os CSVs estão versionados separadamente:
 `checkpoints/small_unet_boundary_10ep_control.pt`,
 `checkpoints/small_unet_boundary_20ep.pt`, `results/part2_20ep_history.csv`
-e `results/part2_20ep_validation.csv`. A célula não roda em `train.py` e não
-substitui o checkpoint final; o teste fica reservado até avaliarmos a validação.
+e `results/part2_20ep_validation.csv`. O experimento não roda em `train.py` e
+**não substitui** `small_unet_boundary_watershed_v2.pt`, usado por `evaluate.py`
+e `inferencia.ipynb`. A flag `RUN_20_EPOCH_EXPERIMENT` está em `True`: não
+execute essa célula novamente ao reproduzir o notebook, a menos que queira
+repetir todo o treino na GPU. A escolha da época foi feita com o decoder
+provisório da Parte 2; a comparação final na validação usou o decoder fixo
+salvo no checkpoint original. Por isso os números da tabela diferem dos mAPs
+impressos durante as épocas.
 
 ## Inferência em qualquer imagem
 
@@ -94,8 +98,8 @@ retreinar. A máscara é salva em `results/<nome>_instancias.png`.
 - `pa1_inference.py`: arquitetura final, checkpoint e decoder.
 - `pa1_experiments.py`: split, métricas, mosaico, campo receptivo e corrupções.
 - `STUDY_NOTES.md`: notas de estudo e histórico das decisões (mantidas locais).
-- `AI_LOG.md`: registro de uso de IA pedido no enunciado, mantido **somente
-  local** até a revisão da dupla; ainda não integra o repositório remoto.
+- `AI_LOG.md`: relatório de uso de IA exigido no enunciado, revisado e incluído
+  no repositório.
 
 Na Parte 5, a época do Atrous foi escolhida pelo conjunto de validação antes
 da comparação no teste. A estratificação por modalidade continua sendo uma
